@@ -1,0 +1,17 @@
+<div role="tabs" class="tabs">
+  <ul role="tablist" class="tabs__list">
+    {{#each tabItems as |tabItem|}}
+    <li role="presentation">
+      <button class="tabs__button {{if (eq activeTab tabItem) "tabs__button--active"}}" role="tab" id="{{tabItem}}"
+        aria-controls="{{tabItem}}" tabindex={{if (eq activeTab tabItem) "0" "-1"}}
+        aria-selected={{eq activeTab tabItem}} onclick={{action "changeActiveTab" tabItem}}>
+        {{tabItem}}
+      </button>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+
+{{yield 
+  (hash panel=(component "accessible-tabs/panel" activeTab=activeTab))
+}}
